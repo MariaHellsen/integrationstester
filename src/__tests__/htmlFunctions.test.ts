@@ -24,10 +24,15 @@ describe("Html tests", () => {
     const container = document.getElementById(
       "movie-container"
     ) as HTMLDivElement;
+
     //Act
     createHtml(movies, container);
 
     //Assert
     expect(container.children.length).toBe(2);
+
+    const firstMovieDiv = container.children[0] as HTMLDivElement;
+    const titleElement = firstMovieDiv.children[0] as HTMLHeadingElement;
+    expect(titleElement.textContent).toBe("Movie 1");
   });
 });
