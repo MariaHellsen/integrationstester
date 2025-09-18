@@ -51,6 +51,7 @@ describe("Html tests", () => {
 
     //Assert
     expect(container.children.length).toBe(1);
+
     const messageElement = container.querySelector("p");
     expect(messageElement?.textContent).toBe("Inga sökresultat att visa");
   });
