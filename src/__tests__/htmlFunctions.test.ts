@@ -1,5 +1,6 @@
 import { IMovie } from "../ts/models/Movie";
 import { createHtml } from "../ts/movieApp";
+import { displayNoResult } from "../ts/movieApp";
 
 describe("Html tests", () => {
   test("it should show films", () => {
@@ -34,5 +35,23 @@ describe("Html tests", () => {
     const firstMovieDiv = container.children[0] as HTMLDivElement;
     const titleElement = firstMovieDiv.children[0] as HTMLHeadingElement;
     expect(titleElement.textContent).toBe("Movie 1");
+  });
+
+  test("it should display NoResult message", () => {
+    //Assign
+
+    document.body.innerHTML += `<div id="movie-container"></div>`;
+    let container = document.getElementById(
+      "movie-container"
+    ) as HTMLDivElement;
+    container.innerHTML = "";
+
+    //Act
+    displayNoResult(container);
+
+    //Assert
+    expect(container.children.length).toBe(1);
+    const messageElement = container.querySelector("p");
+    expect(messageElement?.textContent).toBe("Inga sökresultat att visa");
   });
 });
