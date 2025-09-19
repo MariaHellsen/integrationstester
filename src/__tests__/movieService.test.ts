@@ -1,63 +1,51 @@
 import { getData } from "../ts/services/movieService";
-
-jest.mock("axios", () => {
-  return {
-    default: {
-      get: async (url: string) => {
-        if (url.includes("s=comedy")) {
-          return {
-            data: {
-              Search: [
-                {
-                  Title: "Mrs. Doubtfire",
-                  imdbID: "777",
-                  Type: "movie",
-                  Poster: "https://picsum.photos/200/300?random=7",
-                  Year: "1993",
-                },
-                {
-                  Title: "Home Alone",
-                  imdbID: "666",
-                  Type: "movie",
-                  Poster: "https://picsum.photos/200/300?random=6",
-                  Year: "1990",
-                },
-                {
-                  Title: "Borat",
-                  imdbID: "222",
-                  Type: "movie",
-                  Poster: "https://picsum.photos/200/300?random=2",
-                  Year: "2006",
-                },
-                {
-                  Title: "Anchorman",
-                  imdbID: "111",
-                  Type: "movie",
-                  Poster: "https://picsum.photos/200/300?random=1",
-                  Year: "2004",
-                },
-              ],
-            },
-          };
-        } else if (url.includes("s=nonexistentmovie")) {
-          return {
-            data: {
-              Search: [],
-              Response: "False",
-            },
-          };
-        } else {
-          // Empty search
-          return {
-            data: {
-              Search: [],
-            },
-          };
-        }
-      },
+jest.mock("axios", () => ({
+  __esModule: true, // tells Jest this is an ES module
+  default: {
+    get: async (url: string) => {
+      if (url.includes("s=comedy")) {
+        return {
+          data: {
+            Search: [
+              {
+                Title: "Mrs. Doubtfire",
+                imdbID: "777",
+                Type: "movie",
+                Poster: "https://picsum.photos/200/300?random=7",
+                Year: "1993",
+              },
+              {
+                Title: "Home Alone",
+                imdbID: "666",
+                Type: "movie",
+                Poster: "https://picsum.photos/200/300?random=6",
+                Year: "1990",
+              },
+              {
+                Title: "Borat",
+                imdbID: "222",
+                Type: "movie",
+                Poster: "https://picsum.photos/200/300?random=2",
+                Year: "2006",
+              },
+              {
+                Title: "Anchorman",
+                imdbID: "111",
+                Type: "movie",
+                Poster: "https://picsum.photos/200/300?random=1",
+                Year: "2004",
+              },
+            ],
+          },
+        };
+      } else if (url.includes("s=nonexistentmovie")) {
+        return { data: { Search: [], Response: "False" } };
+      } else {
+        return { data: { Search: [] } };
+      }
     },
-  };
-});
+  },
+}));
 
 describe("getData service tests", () => {
   test("it should get movies when searching for 'comedy'", async () => {
