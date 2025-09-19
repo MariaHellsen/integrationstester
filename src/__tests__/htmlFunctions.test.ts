@@ -55,6 +55,4 @@ describe("Html tests", () => {
     const messageElement = container.querySelector("p");
     expect(messageElement?.textContent).toBe("Inga sökresultat att visa");
   });
-
-  // test("it should sort movies", () => {});
 });
