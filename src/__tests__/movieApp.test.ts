@@ -13,7 +13,7 @@ describe("Movie app test", () => {
     `;
 
     //Act
-    await init();
+    init();
 
     //Assert
     // Simulate user submitting the form
